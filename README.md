@@ -1,2 +1,2 @@
 # 5-10-19
-machinfy day 1
+machinify day 1
