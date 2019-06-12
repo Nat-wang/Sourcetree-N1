@@ -1,0 +1,12 @@
+.myBtn{
+  font-family:Helvetica;
+  display:inline-block;
+}
+.myBtn:hover{
+  border-color:#B1BEFA;
+}
+#centered{
+  align:center;
+  position:relative;
+  border:1px solid;
+}
