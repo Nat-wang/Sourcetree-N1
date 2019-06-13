@@ -25,16 +25,8 @@ export default class TodoAPI {
       headers: {"Content-Type": "application/json; charset=utf-8", "X-TodoUser": userID},
       body: JSON.stringify(data),
     }).then((response) => {
-      return response.json();
-    }).then(function(){
-      var timeout;
-      var feedback = document.getElementById("feedback");
-      feedback.innerHTML = "<p><em>Request Pending...</em></p>";
-      clearTimeout(timeout)
-      timeout = setTimeout(function(){
-        feedback.innerHTML = ""
-        }, 1000)
-      })
+        return response.json();
+    })
 
   }
 
@@ -42,15 +34,7 @@ export default class TodoAPI {
     return fetch(url, {
       method: "DELETE",
       headers: {"X-TodoUser": userID},
-    }).then(function(){
-      var timeout;
-      var feedback = document.getElementById("feedback");
-      feedback.innerHTML = "<p><em>Request Pending...</em></p>";
-      clearTimeout(timeout)
-      timeout = setTimeout(function(){
-        feedback.innerHTML = ""
-        }, 500)
-      }).then((response) => {
+    }).then((response) => {
       return response.json();
     });
   }
@@ -59,13 +43,14 @@ export default class TodoAPI {
     return TodoAPI.doGet(`${baseUrl}/todos`);
   }
 
-
-
   static updateTodo(todo: Todo): Promise<Todo> {
     const id = todo.id;
-    if (id == null) return Promise.reject(new Error("Todo has no id")).then(function(){
-      console.log("Error: No Id")
+    if(id ==null) return Promise.reject(new Error("Todo needs id")).catch(function(){
+      return;
       });
+    if(todo.getTitle()=="ERROR") return Promise.reject(new Error('Todo needs title')).catch(function(error){
+        errorback.innerHTML = "<p>Error: " + error.message + "</p>"
+        });
     return TodoAPI.doPost(`${baseUrl}/todos/${id}`, todo.toJSON());
   }
 
@@ -73,9 +58,10 @@ export default class TodoAPI {
     return TodoAPI.doPost(`${baseUrl}/todos/new`, todo.toJSON());
   }
 
+
   static deleteTodo(todo: Todo): Promise<Todo> {
     const id = todo.id;
-    if (id == null) return Promise.reject(new Error("Todo has no id")).then(function(){
+    if (id == null) Promise.reject(new Error("Todo has no id")).then(function(){
       console.log("Error: No Id")
       });
     return TodoAPI.doDelete(`${baseUrl}/todos/${id}`);

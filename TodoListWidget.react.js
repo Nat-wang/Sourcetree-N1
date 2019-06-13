@@ -69,7 +69,7 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
       clearTimeout(timeout)
       timeout = setTimeout(function(){
         feedback.innerHTML = ""
-        }, 1000)
+        }, 700)
     if(this.props.todoList.getLength()==0){
         var timeout;
         var feedback = document.getElementById("feedback");
@@ -77,16 +77,23 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
         clearTimeout(timeout)
         timeout = setTimeout(function(){
           feedback.innerHTML = ""
-          }, 500)
+          }, 1000)
     }
-    var at = Number(this.state.value);
+    var at = this.state.value;
     console.log(at);
-    this.props.todoList.removeTodo(at);
+    this.props.todoList.removeTodo(Number(at));
     this.setState({value:""})
     this.forceUpdate();
   }
   _handleAddTodo() {
     const todo = new Todo();
+    var timeout;
+    var feedback = document.getElementById("feedback");
+    feedback.innerHTML = "<p><em>Request Pending...</em></p>";
+    clearTimeout(timeout)
+    timeout = setTimeout(function(){
+      feedback.innerHTML = ""
+      }, 750)
     todo.title = "New TODO";
     this.props.todoList.addTodo(todo);
     todo.save();
