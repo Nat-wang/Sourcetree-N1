@@ -54,10 +54,11 @@
     });
   }
   delete(){
-    feedback.innerHTML = "<p><em>Deleting Todo</em></p>"
+
+    errorback.innerHTML = "<p><em>Deleting Todo</em></p>"
     var method = TodoAPI.deleteTodo;
     method(this).then(()=>{
-      feedback.innerHTML = "";
+      errorback.innerHTML = "";
       })
   }
 

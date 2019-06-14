@@ -4,15 +4,61 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="IE=11">
-
     <title>Test</title>
+    <style>
+      #drop{
+        display:none;
+        align:center;
+      }
+      #titleGroup{
+        align:center;
+      }
+      #nameT{
+        border: 1px solid #FFAFB3;
+        border-right-color:#FFFFD3;
+      }
+      #nameT:hover{
+        border-color:#B1BEFA;
+        border-right-color:#FFFFD3;
+      }
+      .titl{
+        display:inline-block;
+        align:center;
+        border: 1px solid #FFAFB3;
+        border-left-color: #FFFFD3;
+
+      }
+    </style>
 </head>
-<header>
-  <h2 class="centered">Nathan's Todo List</h2>
+<script>
+  function dropName(){
+    var drop = document.getElementById("drop")
+    if(document.getElementById("drop").style.display == "none"){
+    document.getElementById("drop").style.display = "inline-block";
+  }
+    else{
+      document.getElementById("drop").style.display = "none";
+    }
+  }
+  function changeName(){
+    var name = document.getElementById("nameT");
+    var change = document.getElementById("drop");
+    name.innerHTML = change.value + "'s";
+  }
+</script>
+<header align="center">
+  <div id="titleGroup">
+  <h2 id="nameT"class="titl"onClick="dropName()"><em>Name</em></h2>
+  <input id="drop"onChange="changeName(this)"type="text" placeholder="Your Name"/>
+  <h2 class="titl">Todo List</h2>
+</div>
 </header>
 <body>
 <div id="root"></div>
-<div id="feedback"></div>
 <script src='/dist/bundle.js'></script>
 </body>
+<section align="center">
+  <div id="feedback"></div>
+  <div id="errorback"></div>
+</section>
 </html>

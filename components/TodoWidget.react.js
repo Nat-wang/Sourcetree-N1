@@ -7,6 +7,7 @@
 "use strict";
 import * as React from "react";
 import Todo from "../models/Todo.js";
+import "./todoList.css";
 
 export type TodoWidgetProps = {
   todo: Todo,

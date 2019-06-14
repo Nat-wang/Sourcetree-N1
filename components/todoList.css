@@ -27,7 +27,7 @@ body{
 .list{
   align:center;
   position:relative;
-  left: 30%;
+  left: 35%;
   font-family: Helvetica;
   border:1px inset #FFCFB3;
   background-color: #FFEFB3;
@@ -42,14 +42,16 @@ body{
 .checkBtn{
   display:inline;
   font-family: Helvetica;
-  position:relative;
-  left:40%;
-  transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -webkit-transform: scale(1.2);
-  padding:5px;
+  position:absolute;
+  left:70%;
+  bottom:15px;
+  border: 1px inset #FFCFB3;
+  border-radius:5px;
+  background-color: #FFFFD3;
 }
-
+.checkBtn:hover{
+  border-color: #B1BEFA;
+}
 .buttons{
   position:relative;
   left:30%;

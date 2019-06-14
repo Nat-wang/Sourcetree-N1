@@ -39,12 +39,25 @@
   // Remove the Todo at the specified position
   removeTodo(at: number){
     if(at <= this._list.length){
-    var todo = this._list.splice(at-1,1);
-    //var removed = this._list.splice(at-1,1);
-    todo[0].delete();
+    //var todo = this._list.splice(at-1,1);
+    var removed = this._list[at-1];
+    removed.delete();
+    //todo[0].delete();
   }
   else{
     feedback.innerHTML="<p>Cannot delete unexisting Todo</p>"
   }
   }
+ 
+ removeAll(at: number){
+   if(at <= this._list.length){
+   var todo = this._list.splice(at-1,1);
+   //var removed = this._list[at-1];
+   //removed.delete();
+   todo[0].delete();
  }
+ else{
+   feedback.innerHTML="<p>Cannot delete unexisting Todo</p>"
+ }
+ }
+}

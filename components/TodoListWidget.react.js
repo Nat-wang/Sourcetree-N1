@@ -23,8 +23,7 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
     super(props);
     this.state={
       value:"",
-      key:""
-    }
+      }
     autobind(this, "_handleAddTodo");
     autobind(this, "handleDeleteTodo");
     autobind(this, "handleTyping");
@@ -39,17 +38,17 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
 
   render(): React.Node {
     return (
+
       <React.Fragment>
         <ol>
           {this.props.todoList.list.map((todo, i) =>
-            <li className="list"key={i}>
-            <div className="inLine">
-            <input
-              className="checkBtn"
-              type="checkbox"
-              onClick={this.handleDelete.bind(this, i+1)}/>
+            <li id={i}className="list"key={i}>
               <TodoWidget todo={todo}/>
-              </div>
+              <input
+                className="checkBtn"
+                type="button"
+                value="&times;"
+                onClick={this.handleDelete.bind(this, i+1)}/>
             </li>
           )}
         </ol>
@@ -60,19 +59,7 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
           value="Add Todo"
           onClick={this._handleAddTodo} />
 
-        <form align="center"onSubmit={this.handleDeleteTodo}>
-        <input
-          className="input"
-          type="text"
-          placeholder = "Enter number"
-          value={this.state.value}
-          onChange={this.handleTyping}/>
-        <input
-          className="btn"
-          type="submit"
-          value="Delete Number"
-          />
-        </form>
+
         <input
           className="btn"
           type="button"
@@ -82,16 +69,27 @@ export default class TodoListWidget extends React.Component<TodoListWidgetProps,
       </React.Fragment>
     );
   }
-  handleDelete(at: number){
+
+  handleDelete(at){
+    var timeout;
+    var feedback = document.getElementById("feedback");
+    feedback.innerHTML="<p><em>Deleting Todo...</em><p>";
+    clearTimeout(timeout)
+    timeout = setTimeout(function(){
+      feedback.innerHTML="";
+      }, 1000)
+    document.getElementById(at-1).style.display="none"
     this.props.todoList.removeTodo(at);
-    document.location.reload(true);
     this.forceUpdate();
+
+
   }
   handleTyping(e){
     this.setState({value: e.target.value})
   }
   handleDeleteTodo(e){
     e.preventDefault();
+
     if(this.props.todoList.getLength()==0){
         var timeout;
         var feedback = document.getElementById("feedback");
@@ -128,16 +126,11 @@ else{
     this.props.todoList.removeTodo(at);
     //resets input text to initial condition
     this.setState({value:""})
+    this.forceUpdate();
+    //document.location.reload(true);
 
-      document.location.reload(true);
-      this.forceUpdate();
 
-      var timeout;
-      feedback.innerHTML="<p><em>Deleting Todo...</em><p>";
-      clearTimeout(timeout)
-      timeout = setTimeout(function(){
-        feedback.innerHTML="";
-        }, 2000)
+
 
   }
   }
@@ -151,8 +144,8 @@ else{
   handleClear(e){
     e.preventDefault();
     var len = this.props.todoList.getLength();
-    for(var i = 1; i <= len+1; i++){
-    this.props.todoList.removeTodo(1)
+    for(var i = 1; i <= len; i++){
+    this.props.todoList.removeAll(1)
     this.forceUpdate();
   }
 
