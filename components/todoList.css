@@ -1,0 +1,61 @@
+header{
+  font-family:Helvetica;
+}
+body{
+  background-color: #FFFFD3;
+}
+.input{
+  align:center;
+  font-family:Helvetica;
+  background-color: #FFFFF6;
+  border:1px inset #FFCFB3;
+  border-radius: 2.5px;
+}
+.input:hover{
+  border-color:#B1BEFA;
+}
+.btn{
+  align:center;
+  font-family:Helvetica;
+  background-color:#FFFFF6;
+  border-radius:5px;
+  border:1px inset #FFCFB3;
+}
+.btn:hover{
+  border-color:#B1BEFA;
+}
+.list{
+  align:center;
+  position:relative;
+  left: 30%;
+  font-family: Helvetica;
+  border:1px inset #FFCFB3;
+  background-color: #FFEFB3;
+  border-radius: 5px;
+  margin-bottom:10px;
+  padding:15px;
+  width:25%;
+}
+.list:hover{
+  border-color: #B1BEFA;
+}
+.checkBtn{
+  display:inline;
+  font-family: Helvetica;
+  position:relative;
+  left:40%;
+  transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+  padding:5px;
+}
+
+.buttons{
+  position:relative;
+  left:30%;
+  border: 1px inset #FFCFB3;
+  border-radius:5px;
+  background-color: #FFEFB3;
+  padding:10px;
+  width:40%;
+}
